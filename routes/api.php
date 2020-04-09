@@ -1,7 +1,6 @@
 <?php
 
-use App\Event;
-
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,5 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/events', function (Request $request) {
     $events = Event::all();
-    return response()->json($events);
+    $array = $events->toArray();
+    $array[0]['bongo'] = [
+        'bloody'=>'marry',
+        'type'=>'genitelia'
+    ];
+
+    return response()->json($array);
 });

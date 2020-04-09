@@ -1,6 +1,6 @@
 <template>
     <div>
-        <FullCalendar 
+        <FullCalendar
             @dateClick="handleDateClick"
             @eventClick="handleEventClick"
             @eventMouseEnter="handleMouseEnter"
@@ -10,6 +10,7 @@
             :plugins="calendarPlugins"
             :weekends="calendarWeekends"
             :events="calendarEvents"
+            :locale="fr"
             :header="{
                 left: 'prev,next today',
                 center: 'title',
@@ -25,45 +26,52 @@ import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import listPlugin from '@fullcalendar/list';
 import Vue from 'vue';
 import Tooltip from 'tooltip.js';
 
 export default {
+
     components: {
         FullCalendar
     },
     methods: {
         handleDateClick(info) {
-            console.log(info);
+            //console.log(info);
         },
         handleEventClick(info) {
-            console.log(info);
+            //console.log(info);
         },
         handleMouseEnter(info) {
-            console.log(info);
+            //console.log(info);
         },
         handleMouseLeave(info) {
-            console.log(info);
+            //console.log(info);
             this.tooltip = null;
         },
         handleEventRender(info) {
-            console.log(info);
+            //console.log(info);
             this.tooltip = new Tooltip(info.el, {
-                title: info.event.title,
+                title:"<div><h3>bongo</h3><p>Typ: Ölwechsel</p><p>Priorität: HOCH</p></div>",
+                text:"bimbo",
                 placement: 'top',
                 trigger: 'hover',
-                html: true
-                // container: 'body'
+                html: true,
+                container: 'body'
             });
         }
     },
+    tooltip(){
+
+    },
     data() {
         return {
-            tooltip: null,
+            tooltip: "torpedo",
             calendarPlugins: [
                 dayGridPlugin,
                 timeGridPlugin,
-                interactionPlugin
+                interactionPlugin,
+                listPlugin
             ],
             calendarWeekends: true,
             calendarEvents: [
@@ -79,7 +87,7 @@ export default {
                 this.calendarEvents = []
                 this.events.forEach((event) => {
                     this.calendarEvents.push({
-                        title: event.title,
+                        title:console.log(event),
                         start: event.start_date,
                         end: event.end_date
                     })
@@ -95,4 +103,5 @@ export default {
 @import "~@fullcalendar/core/main.css";
 @import "~@fullcalendar/daygrid/main.css";
 @import "~@fullcalendar/timegrid/main.css";
+@import "~@fullcalendar/list/main.css";
 </style>
