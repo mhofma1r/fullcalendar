@@ -11210,7 +11210,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.events.forEach(function (event) {
 
                 _this.calendarEvents.push({
-                    url: console.log(event),
+                    url: 'http://www.google.com',
                     title: event.title,
                     progress: event.progress,
                     prio: event.priority,

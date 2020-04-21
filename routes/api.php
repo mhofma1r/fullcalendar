@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Event;
+use App\Models\MaintenanceEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/events', function (Request $request) {
-    $events = Event::all();
-    $array = $events->toArray();
-    $array[0]['bongo'] = [
-        'bloody'=>'marry',
-        'type'=>'genitelia'
-    ];
+    $maintenceEvents = new MaintenanceEvent();
+    $recurringEvents = $maintenceEvents->getRecurringEvents();
+    $maintenceEvents->refreshRecurringBacklog($recurringEvents);
+    $events = new \App\Models\Event();
+    $array = $events->with('maintenanceEvent')->get();
+    return $array;
 
-    return response()->json($array);
+
 });

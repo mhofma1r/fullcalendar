@@ -88,7 +88,7 @@
                 this.events.forEach((event) => {
 
                     this.calendarEvents.push({
-                        url: console.log(event),
+                        url: 'http://www.google.com',
                         title:event.title,
                         progress: event.progress,
                         prio: event.priority,
